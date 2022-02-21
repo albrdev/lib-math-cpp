@@ -20,6 +20,31 @@ namespace UnitTest
     ASSERT_EQ(Math::Sign(10.0), 1.0);
   }
 
+  TEST(Math, NumericLength)
+  {
+    ASSERT_EQ(Math::NumericLength(0), 1u);
+
+    ASSERT_EQ(Math::NumericLength(1), 1u);
+    ASSERT_EQ(Math::NumericLength(10), 2u);
+    ASSERT_EQ(Math::NumericLength(100), 3u);
+    ASSERT_EQ(Math::NumericLength(1000), 4u);
+
+    ASSERT_EQ(Math::NumericLength(-1), 1u);
+    ASSERT_EQ(Math::NumericLength(-10), 2u);
+    ASSERT_EQ(Math::NumericLength(-100), 3u);
+    ASSERT_EQ(Math::NumericLength(-1000), 4u);
+
+    ASSERT_EQ(Math::NumericLength(0.0), 1u);
+
+    ASSERT_EQ(Math::NumericLength(1.5), 2u);
+    ASSERT_EQ(Math::NumericLength(0.15), 3u);
+    ASSERT_EQ(Math::NumericLength(0.015), 4u);
+
+    ASSERT_EQ(Math::NumericLength(-1.5), 2u);
+    ASSERT_EQ(Math::NumericLength(-0.15), 3u);
+    ASSERT_EQ(Math::NumericLength(-0.015), 4u);
+  }
+
   TEST(Math, Distance)
   {
     ASSERT_EQ(Math::Distance(5, 10), 5);

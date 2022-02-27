@@ -20,6 +20,29 @@ namespace UnitTest
     ASSERT_EQ(Math::Sign(10.0), 1.0);
   }
 
+  TEST(Math, IsPowerOfTwo)
+  {
+    std::uint32_t powerOfTwoList[std::numeric_limits<std::uint16_t>::digits];
+    for(std::uint16_t i = 0u; i < std::numeric_limits<std::uint16_t>::digits; i++)
+    {
+      powerOfTwoList[i] = 1u << i;
+    }
+
+    std::size_t index = 0u;
+    for(std::uint32_t i = 0u; i <= std::numeric_limits<uint16_t>::max(); i++)
+    {
+      if(i == powerOfTwoList[index])
+      {
+        ASSERT_TRUE(Math::IsPowerOfTwo(i));
+        index++;
+      }
+      else
+      {
+        ASSERT_FALSE(Math::IsPowerOfTwo(i));
+      }
+    }
+  }
+
   TEST(Math, NumericLength)
   {
     ASSERT_EQ(Math::NumericLength(0), 1u);

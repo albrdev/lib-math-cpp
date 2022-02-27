@@ -1,8 +1,10 @@
 #ifndef __LIB_MATH__COMMON_HPP__
 #define __LIB_MATH__COMMON_HPP__
 
+#include <cstdint>
 #include <cmath>
 #include <algorithm>
+#include <limits>
 
 namespace Math
 {
@@ -16,7 +18,10 @@ namespace Math
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>
   constexpr bool IsPowerOfTwo(T value)
   {
-    return value > T(0u) ? ((value & (value - T(1u))) == T(0u)) : false;
+    constexpr T zero = static_cast<T>(0u);
+    constexpr T one  = static_cast<T>(1u);
+
+    return value > zero ? ((value & (value - one)) == zero) : false;
   }
 
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_integral<T>::value>::type>

@@ -20,13 +20,12 @@ elseif(MSVC)
 endif()
 
 add_library(${LIBRARY_MATH} STATIC)
+set_target_properties(${LIBRARY_MATH} PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(${LIBRARY_MATH} PUBLIC src)
 
 add_library(${UNITTEST_MATH} STATIC)
 target_include_directories(${UNITTEST_MATH} PUBLIC src)
 target_link_libraries(${UNITTEST_MATH} gtest_main gmock_main)
-
-set_target_properties(${LIBRARY_MATH} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Traverse directories
 add_subdirectory(src)

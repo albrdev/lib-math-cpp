@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "Common.hpp"
+#include <unordered_set>
 
 using namespace ::testing;
 
@@ -22,24 +23,28 @@ namespace UnitTest
 
   TEST(Math, IsPowerOfTwo)
   {
-    std::uint32_t powerOfTwoList[std::numeric_limits<std::uint16_t>::digits];
-    for(std::uint16_t i = 0u; i < std::numeric_limits<std::uint16_t>::digits; i++)
-    {
-      powerOfTwoList[i] = 1u << i;
-    }
+    const std::unordered_set<std::uint32_t> powerOfTwoList = {1u << 0u,
+                                                              1u << 1u,
+                                                              1u << 2u,
+                                                              1u << 3u,
+                                                              1u << 4u,
+                                                              1u << 5u,
+                                                              1u << 6u,
+                                                              1u << 7u,
+                                                              1u << 8u,
+                                                              1u << 9u,
+                                                              1u << 10u,
+                                                              1u << 11u,
+                                                              1u << 12u,
+                                                              1u << 13u,
+                                                              1u << 14u,
+                                                              1u << 15u};
 
-    std::size_t index = 0u;
-    for(std::uint32_t i = 0u; i <= std::numeric_limits<uint16_t>::max(); i++)
+    for(std::uint32_t i = 0u; i <= std::numeric_limits<std::uint16_t>::max(); i++)
     {
-      if(i == powerOfTwoList[index])
-      {
-        ASSERT_TRUE(Math::IsPowerOfTwo(i));
-        index++;
-      }
-      else
-      {
-        ASSERT_FALSE(Math::IsPowerOfTwo(i));
-      }
+      const bool actual   = Math::IsPowerOfTwo(i);
+      const bool expected = powerOfTwoList.find(i) != powerOfTwoList.cend();
+      ASSERT_EQ(actual, expected);
     }
   }
 
@@ -120,5 +125,30 @@ namespace UnitTest
 
     ASSERT_EQ(Math::Normalize(0.0, -100.0, 100.0, -1.0, 1.0), 0.0);
     ASSERT_EQ(Math::Normalize(0.0, -1.0, 1.0, -100.0, 100.0), 0.0);
+  }
+
+  TEST(Math, IsPrime)
+  {
+    const std::unordered_set<std::uint32_t> primeNumbers = {2u,  3u,  5u,  7u,  11u, 13u, 17u, 19u, 23u, 29u, 31u, 37u, 41u,
+                                                            43u, 47u, 53u, 59u, 61u, 67u, 71u, 73u, 79u, 83u, 89u, 97u};
+
+    for(std::uint32_t i = 0u; i <= 100u; i++)
+    {
+      const bool actual   = Math::IsPrime(i);
+      const bool expected = primeNumbers.find(i) != primeNumbers.cend();
+      ASSERT_EQ(actual, expected);
+    }
+  }
+
+  TEST(Math, IsPerfect)
+  {
+    const std::unordered_set<std::uint32_t> perfectNumbers = {6u, 28u, 496u, 8128u};
+
+    for(std::uint32_t i = 0u; i <= 10000u; i++)
+    {
+      const bool actual   = Math::IsPerfect(i);
+      const bool expected = perfectNumbers.find(i) != perfectNumbers.cend();
+      ASSERT_EQ(actual, expected);
+    }
   }
 } // namespace UnitTest

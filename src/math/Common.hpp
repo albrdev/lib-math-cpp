@@ -151,7 +151,7 @@ namespace Math
     return Normalize(value, negone, one, min, max);
   }
 
-  template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value>::type>
+  template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>
   bool IsPrime(T value)
   {
     constexpr T two   = static_cast<T>(2);
@@ -179,7 +179,7 @@ namespace Math
     return true;
   }
 
-  template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value>::type>
+  template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>
   bool IsPerfect(T value)
   {
     constexpr T zero  = static_cast<T>(0);

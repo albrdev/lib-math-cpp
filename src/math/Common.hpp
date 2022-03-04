@@ -167,7 +167,7 @@ namespace Math
       return false;
     }
 
-    const T max = std::sqrt(value);
+    const T max = static_cast<T>(std::sqrt(value));
     for(T i = three; i <= max; i += two)
     {
       if(value % i == zero)
@@ -194,7 +194,7 @@ namespace Math
 
     const T max = value / two;
     T sum       = three;
-    for(T i = three; i <= value; i++)
+    for(T i = three; i <= max; i++)
     {
       if((value % i) == zero)
       {

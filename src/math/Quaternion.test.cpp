@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "Quaternion.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace ::testing;
 

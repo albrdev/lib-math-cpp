@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "Vector2.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace ::testing;
 

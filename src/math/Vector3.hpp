@@ -1,9 +1,10 @@
 #ifndef __VECTOR3_HPP__
 #define __VECTOR3_HPP__
 
+#include "Vector2.hpp"
+
 #include <cmath>
 #include <type_traits>
-#include "Vector2.hpp"
 
 template<class T, class = typename std::enable_if<std::is_arithmetic<T>::value && std::is_signed<T>::value>::type>
 class Vector3

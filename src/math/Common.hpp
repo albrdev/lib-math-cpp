@@ -1,9 +1,9 @@
 #ifndef __LIB_MATH__COMMON_HPP__
 #define __LIB_MATH__COMMON_HPP__
 
-#include <cstdint>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <cstdint>
 #include <limits>
 
 namespace Math

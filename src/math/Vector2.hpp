@@ -1,5 +1,5 @@
-#ifndef __VECTOR2_HPP__
-#define __VECTOR2_HPP__
+#ifndef __MATH__VECTOR2_HPP__
+#define __MATH__VECTOR2_HPP__
 
 #include <cmath>
 #include <type_traits>
@@ -171,4 +171,4 @@ class Vector2
   T m_Y;
 };
 
-#endif // __VECTOR2_HPP__
+#endif // __MATH__VECTOR2_HPP__

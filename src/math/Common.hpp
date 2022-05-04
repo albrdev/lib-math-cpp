@@ -1,5 +1,5 @@
-#ifndef __LIB_MATH__COMMON_HPP__
-#define __LIB_MATH__COMMON_HPP__
+#ifndef __MATH__COMMON_HPP__
+#define __MATH__COMMON_HPP__
 
 #include <algorithm>
 #include <cmath>
@@ -206,4 +206,4 @@ namespace Math
   }
 } // namespace Math
 
-#endif // __LIB_MATH__COMMON_HPP__
+#endif // __MATH__COMMON_HPP__

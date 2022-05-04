@@ -1,5 +1,5 @@
-#ifndef __QUATERNION_HPP__
-#define __QUATERNION_HPP__
+#ifndef __MATH__QUATERNION_HPP__
+#define __MATH__QUATERNION_HPP__
 
 #include <cmath>
 #include <type_traits>
@@ -142,4 +142,4 @@ class Quaternion
   T m_W;
 };
 
-#endif // __QUATERNION_HPP__
+#endif // __MATH__QUATERNION_HPP__

@@ -1,5 +1,5 @@
-#ifndef __VECTOR3_HPP__
-#define __VECTOR3_HPP__
+#ifndef __MATH__VECTOR3_HPP__
+#define __MATH__VECTOR3_HPP__
 
 #include "Vector2.hpp"
 
@@ -193,4 +193,4 @@ class Vector3
   T m_Z;
 };
 
-#endif // __VECTOR3_HPP__
+#endif // __MATH__VECTOR3_HPP__

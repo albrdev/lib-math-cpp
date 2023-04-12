@@ -85,10 +85,10 @@ namespace Math
   }
 
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value>::type>
-  constexpr T Origo(T value, T min, T max)
+  constexpr T Midpoint(T min, T max)
   {
     constexpr T two = static_cast<T>(2);
-    return (min + max) / two;
+    return min + ((max - min) / two);
   }
 
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value>::type>
@@ -149,6 +149,12 @@ namespace Math
     constexpr T negone = static_cast<T>(-1);
     constexpr T one    = static_cast<T>(1);
     return Normalize(value, negone, one, min, max);
+  }
+
+  template<class T, class U, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_floating_point<U>::value>::type>
+  T Lerp(T min, T max, U fraction)
+  {
+    return static_cast<T>((static_cast<U>(min) * (static_cast<U>(1) - fraction)) + (static_cast<U>(max) * fraction));
   }
 
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>

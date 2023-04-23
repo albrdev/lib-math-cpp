@@ -154,7 +154,7 @@ namespace Math
   template<class T, class U, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_floating_point<U>::value>::type>
   T Lerp(T min, T max, U fraction)
   {
-    constexpr T one    = static_cast<T>(1);
+    constexpr U one    = static_cast<U>(1);
     return static_cast<T>((static_cast<U>(min) * (one - fraction)) + (static_cast<U>(max) * fraction));
   }
 

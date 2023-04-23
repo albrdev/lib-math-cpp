@@ -12,7 +12,7 @@ namespace Math
   constexpr T Sign(T value)
   {
     constexpr T zero = static_cast<T>(0);
-    return (value > zero) - (value < zero);
+    return static_cast<T>((value > zero) - (value < zero));
   }
 
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>

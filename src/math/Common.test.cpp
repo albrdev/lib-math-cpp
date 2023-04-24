@@ -23,6 +23,13 @@ namespace UnitTest
     ASSERT_DOUBLE_EQ(Math::Sign(10.0), 1.0);
   }
 
+  TEST(Math, FloatCompare)
+  {
+    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.5f + std::numeric_limits<float>::epsilon()));
+    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.25f, 0.25f));
+    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.75f, 0.25f));
+  }
+
   TEST(Math, IsPowerOfTwo)
   {
     const std::unordered_set<std::uint32_t> powerOfTwoList = {1u << 0u,

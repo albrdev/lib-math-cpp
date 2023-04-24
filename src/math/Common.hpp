@@ -15,6 +15,12 @@ namespace Math
     return static_cast<T>((value > zero) - (value < zero));
   }
 
+  template<class T, typename = typename std::enable_if<std::is_floating_point<T>::value>::type>
+  bool FloatCompare(T a, T b, T tolerance = std::numeric_limits<T>::epsilon())
+  {
+    return std::fabs(a - b) <= tolerance;
+  }
+
   template<class T, typename = typename std::enable_if<std::is_arithmetic<T>::value && std::is_unsigned<T>::value>::type>
   constexpr bool IsPowerOfTwo(T value)
   {

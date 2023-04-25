@@ -4,15 +4,10 @@
 #include <cmath>
 #include <type_traits>
 
-template<class T, class U>
-class Vector3;
-
-template<class T, class = typename std::enable_if<std::is_arithmetic<T>::value && std::is_signed<T>::value>::type>
+template<class T, std::enable_if_t<std::is_arithmetic_v<T> && std::is_signed_v<T>, bool> = true>
 class Vector2
 {
   public:
-  friend class Vector3<T, T>;
-
   static constexpr Vector2<T> Zero = Vector2<T>(static_cast<T>(0), static_cast<T>(0));
   static constexpr Vector2<T> One  = Vector2<T>(static_cast<T>(1), static_cast<T>(1));
 

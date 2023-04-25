@@ -21,8 +21,8 @@ clean:
 
 .PHONY: unittest
 unittest:
-	@./build/test/unit_tests
+	@./build/unit_testsuite-math
 
 .PHONY: memcheck
 memcheck:
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --error-exitcode=1 ./build/test/unit_tests 2>&1 | sed -n "/SUMMARY/,$$$$p"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --error-exitcode=1 ./build/unit_testsuite-math 2>&1 | sed -n "/SUMMARY/,$$$$p"

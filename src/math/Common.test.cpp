@@ -23,11 +23,17 @@ namespace UnitTest
     ASSERT_DOUBLE_EQ(Math::Sign(10.0), 1.0);
   }
 
-  TEST(Math, FloatCompare)
+  TEST(Math, Equals)
   {
-    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.5f + std::numeric_limits<float>::epsilon()));
-    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.25f, 0.25f));
-    ASSERT_TRUE(Math::FloatCompare(0.5f, 0.75f, 0.25f));
+    ASSERT_TRUE(Math::Equals(0.5f, 0.5f));
+    ASSERT_TRUE(Math::Equals(0.5f, 0.5f + std::numeric_limits<float>::epsilon()));
+    ASSERT_TRUE(Math::Equals(0.5f, 0.25f, 0.25f));
+    ASSERT_TRUE(Math::Equals(0.5f, 0.75f, 0.25f));
+
+    ASSERT_TRUE(Math::Equals(50, 50));
+    ASSERT_TRUE(Math::Equals(50, 50 + 1, 1));
+    ASSERT_TRUE(Math::Equals(50, 25, 25));
+    ASSERT_TRUE(Math::Equals(50, 75, 25));
   }
 
   TEST(Math, IsPowerOfTwo)

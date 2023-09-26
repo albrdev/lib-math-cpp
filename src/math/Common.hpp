@@ -12,8 +12,8 @@ namespace Math
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Sign(T value)
   {
-    constexpr T zero = static_cast<T>(0);
-    return static_cast<T>((value > zero) - (value < zero));
+    constexpr T kZero = static_cast<T>(0);
+    return static_cast<T>((value > kZero) - (value < kZero));
   }
 
   template<class T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
@@ -40,24 +40,24 @@ namespace Math
   template<class T, std::enable_if_t<std::is_unsigned_v<T>, bool> = true>
   constexpr bool IsPowerOfTwo(T value)
   {
-    constexpr T zero = static_cast<T>(0u);
-    constexpr T one  = static_cast<T>(1u);
+    constexpr T kZero = static_cast<T>(0u);
+    constexpr T kOne  = static_cast<T>(1u);
 
-    return value > zero ? ((value & (value - one)) == zero) : false;
+    return value > kZero ? ((value & (value - kOne)) == kZero) : false;
   }
 
   template<class T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
   std::size_t NumericLength(T value, int base = 10)
   {
-    constexpr T zero = static_cast<T>(0);
+    constexpr T kZero = static_cast<T>(0);
 
     std::size_t result = 0u;
-    if(value == zero)
+    if(value == kZero)
     {
       return 1u;
     }
 
-    while(value != zero)
+    while(value != kZero)
     {
       value /= base;
       result++;
@@ -69,11 +69,11 @@ namespace Math
   template<class T, std::enable_if_t<std::is_floating_point_v<T>, bool> = true>
   std::size_t NumericLength(T value)
   {
-    constexpr T zero = static_cast<T>(0);
-    constexpr T ten  = static_cast<T>(10);
+    constexpr T kZero = static_cast<T>(0);
+    constexpr T kTen  = static_cast<T>(10);
 
     std::size_t result = 0u;
-    if(std::trunc(value) == zero)
+    if(std::trunc(value) == kZero)
     {
       result++;
     }
@@ -81,13 +81,13 @@ namespace Math
     T tmpValue = value - std::trunc(value);
     while(tmpValue != std::trunc(tmpValue))
     {
-      tmpValue *= ten;
+      tmpValue *= kTen;
       result++;
     }
 
-    while(std::trunc(value) != zero)
+    while(std::trunc(value) != kZero)
     {
-      value /= ten;
+      value /= kTen;
       result++;
     }
 
@@ -109,8 +109,8 @@ namespace Math
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Midpoint(T min, T max)
   {
-    constexpr T two = static_cast<T>(2);
-    return min + ((max - min) / two);
+    constexpr T kTwo = static_cast<T>(2);
+    return min + ((max - min) / kTwo);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
@@ -122,17 +122,17 @@ namespace Math
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Clamp01(T value)
   {
-    constexpr T zero = static_cast<T>(0);
-    constexpr T one  = static_cast<T>(1);
-    return Clamp(value, zero, one);
+    constexpr T kZero = static_cast<T>(0);
+    constexpr T kOne  = static_cast<T>(1);
+    return Clamp(value, kZero, kOne);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Clamp11(T value)
   {
-    constexpr T negone = static_cast<T>(-1);
-    constexpr T one    = static_cast<T>(1);
-    return Clamp(value, negone, one);
+    constexpr T kNegOne = static_cast<T>(-1);
+    constexpr T kOne    = static_cast<T>(1);
+    return Clamp(value, kNegOne, kOne);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
@@ -144,62 +144,62 @@ namespace Math
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Normalize01(T value, T min, T max)
   {
-    constexpr T zero = static_cast<T>(0);
-    constexpr T one  = static_cast<T>(1);
-    return Normalize(value, min, max, zero, one);
+    constexpr T kZero = static_cast<T>(0);
+    constexpr T kOne  = static_cast<T>(1);
+    return Normalize(value, min, max, kZero, kOne);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Denormalize01(T value, T min, T max)
   {
-    constexpr T zero = static_cast<T>(0);
-    constexpr T one  = static_cast<T>(1);
-    return Normalize(value, zero, one, min, max);
+    constexpr T kZero = static_cast<T>(0);
+    constexpr T kOne  = static_cast<T>(1);
+    return Normalize(value, kZero, kOne, min, max);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Normalize11(T value, T min, T max)
   {
-    constexpr T negone = static_cast<T>(-1);
-    constexpr T one    = static_cast<T>(1);
-    return Normalize(value, min, max, negone, one);
+    constexpr T kNegOne = static_cast<T>(-1);
+    constexpr T kOne    = static_cast<T>(1);
+    return Normalize(value, min, max, kNegOne, kOne);
   }
 
   template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
   constexpr T Denormalize11(T value, T min, T max)
   {
-    constexpr T negone = static_cast<T>(-1);
-    constexpr T one    = static_cast<T>(1);
-    return Normalize(value, negone, one, min, max);
+    constexpr T kNegOne = static_cast<T>(-1);
+    constexpr T kOne    = static_cast<T>(1);
+    return Normalize(value, kNegOne, kOne, min, max);
   }
 
   template<class T, class U, std::enable_if_t<std::is_arithmetic_v<T> && std::is_floating_point_v<U>, bool> = true>
   T Lerp(T min, T max, U fraction)
   {
-    constexpr U one = static_cast<U>(1);
-    return static_cast<T>((static_cast<U>(min) * (one - fraction)) + (static_cast<U>(max) * fraction));
+    constexpr U kOne = static_cast<U>(1);
+    return static_cast<T>((static_cast<U>(min) * (kOne - fraction)) + (static_cast<U>(max) * fraction));
   }
 
   template<class T, std::enable_if_t<std::is_unsigned_v<T>, bool> = true>
   bool IsPrime(T value)
   {
-    constexpr T two   = static_cast<T>(2);
-    constexpr T three = static_cast<T>(3);
-    constexpr T zero  = static_cast<T>(0);
+    constexpr T kTwo   = static_cast<T>(2);
+    constexpr T kThree = static_cast<T>(3);
+    constexpr T kZero  = static_cast<T>(0);
 
-    if(value == two)
+    if(value == kTwo)
     {
       return true;
     }
-    else if((value < two) || ((value % two) == zero))
+    else if((value < kTwo) || ((value % kTwo) == kZero))
     {
       return false;
     }
 
     const T max = static_cast<T>(std::sqrt(value));
-    for(T i = three; i <= max; i += two)
+    for(T i = kThree; i <= max; i += kTwo)
     {
-      if(value % i == zero)
+      if(value % i == kZero)
       {
         return false;
       }
@@ -211,21 +211,20 @@ namespace Math
   template<class T, std::enable_if_t<std::is_unsigned_v<T>, bool> = true>
   bool IsPerfect(T value)
   {
-    constexpr T zero  = static_cast<T>(0);
-    constexpr T two   = static_cast<T>(2);
-    constexpr T three = static_cast<T>(3);
-    constexpr T six   = static_cast<T>(6);
+    constexpr T kZero  = static_cast<T>(0);
+    constexpr T kTwo   = static_cast<T>(2);
+    constexpr T kThree = static_cast<T>(3);
 
-    if(((value % two) != zero) && value < six)
+    if((value % kTwo) != kZero)
     {
       return false;
     }
 
-    const T max = value / two;
-    T sum       = three;
-    for(T i = three; i <= max; i++)
+    const T max = value / kTwo;
+    T sum       = kThree;
+    for(T i = kThree; i <= max; i++)
     {
-      if((value % i) == zero)
+      if((value % i) == kZero)
       {
         sum += i;
       }

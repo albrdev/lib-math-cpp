@@ -36,6 +36,19 @@ namespace UnitTest
     ASSERT_TRUE(Math::Equals(50, 75, 25));
   }
 
+  TEST(Math, Delta)
+  {
+    ASSERT_EQ(Math::Delta(std::numeric_limits<unsigned int>::max(), 0u), std::numeric_limits<unsigned int>::max());
+    ASSERT_EQ(Math::Delta(std::numeric_limits<unsigned int>::max() - 1u, 0u), std::numeric_limits<unsigned int>::max() - 1u);
+    ASSERT_EQ(Math::Delta(std::numeric_limits<unsigned int>::max(), 1u), std::numeric_limits<unsigned int>::max() - 1u);
+    ASSERT_EQ(Math::Delta(std::numeric_limits<unsigned int>::max() - 1u, 1u), std::numeric_limits<unsigned int>::max() - 2u);
+
+    ASSERT_EQ(Math::Delta(0u, std::numeric_limits<unsigned int>::max()), 1u);
+    ASSERT_EQ(Math::Delta(0u, std::numeric_limits<unsigned int>::max() - 1u), 2u);
+    ASSERT_EQ(Math::Delta(1u, std::numeric_limits<unsigned int>::max()), 2u);
+    ASSERT_EQ(Math::Delta(1u, std::numeric_limits<unsigned int>::max() - 1u), 3u);
+  }
+
   TEST(Math, IsPowerOfTwo)
   {
     const std::unordered_set<std::uint32_t> powerOfTwoList = {1u << 0u,

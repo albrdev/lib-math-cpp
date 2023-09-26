@@ -28,6 +28,15 @@ namespace Math
     return std::fabs(a - b) <= tolerance;
   }
 
+  template<class T, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
+  constexpr T Delta(T a, T b)
+  {
+    constexpr auto kMax = std::numeric_limits<T>::max();
+    constexpr T kOne    = static_cast<T>(1);
+
+    return (a < b) ? (((kMax - b) + a) + kOne) : (a - b);
+  }
+
   template<class T, std::enable_if_t<std::is_unsigned_v<T>, bool> = true>
   constexpr bool IsPowerOfTwo(T value)
   {
@@ -167,7 +176,7 @@ namespace Math
   template<class T, class U, std::enable_if_t<std::is_arithmetic_v<T> && std::is_floating_point_v<U>, bool> = true>
   T Lerp(T min, T max, U fraction)
   {
-    constexpr U one    = static_cast<U>(1);
+    constexpr U one = static_cast<U>(1);
     return static_cast<T>((static_cast<U>(min) * (one - fraction)) + (static_cast<U>(max) * fraction));
   }
 
